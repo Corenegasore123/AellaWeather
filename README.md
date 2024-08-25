@@ -16,12 +16,11 @@ AellaWeather is a simple weather website that allows users to search for the cur
 3. The website will display the current temperature, weather conditions, and forecast for the next few days.
 
 ### Installation
-    ```bash
     git clone https://github.com/Corenegasore123/AellaWeather.git
     cd AELLAWEATHER
     npm install
     npm run dev
-    
+
     
 
 
