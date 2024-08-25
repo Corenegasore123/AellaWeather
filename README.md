@@ -2,6 +2,10 @@
 
 AellaWeather is a simple weather website that allows users to search for the current weather conditions and forecast of any city. It provides an intuitive interface for users to get current weather and weather forecast of a city
 
+## Live Demo
+
+Live Site: https://aella-weather.vercel.app
+
 ## Features
 
 - Search for the current weather of any city
