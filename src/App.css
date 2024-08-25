@@ -117,7 +117,7 @@ form{
     flex-direction: column;
     width: 100%;
     min-height: 100vh;
-    background: black;
+    background: url("/public/background.jpg");
     background-size: cover;
     color: rgb(193, 217, 224);
   }
