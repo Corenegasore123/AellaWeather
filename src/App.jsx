@@ -2,6 +2,7 @@ import "./App.css";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { FaSpinner } from "react-icons/fa";
+import { FaCloud } from "react-icons/fa";
 
 function App() {
   const [weatherData, setWeatherData] = useState(null);
@@ -214,7 +215,7 @@ function App() {
           </div>
           <div className="temp">
             <div className="sub-temp">
-              <img src="/cloud.png" alt="temp" />
+              <FaCloud className="cloud-image" />
               <p>{kelvinToCelsius(weatherData.main.temp).toFixed(2)} °C</p>
             </div>
           </div>
