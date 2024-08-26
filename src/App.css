@@ -1,3 +1,8 @@
+.cloud-image{
+  margin-right: 20px;
+  font-size: 70px;
+}
+
 .loading-container {
   display: flex;
   flex-direction: column;
@@ -64,7 +69,7 @@ form{
   
   .forecast-item {
     text-align: center;
-    margin: 0 10px; /* Spacing between items */
+    margin: 0 10px;
     background-color: rgba(110, 198, 242, 0.3);
     padding-block: 20px;
     padding-inline: 40px;
@@ -267,6 +272,17 @@ form{
   
     .input{
       width: 25vh;
+    }
+  }
+
+
+  @media (max-width: 725px) and (min-width: 0px) {
+    .sub-temp{
+      flex-direction: column;
+      gap: 20px;
+    }
+    .cloud-image{
+      font-size: 50px;
     }
   }
 
