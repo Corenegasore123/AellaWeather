@@ -214,7 +214,7 @@ function App() {
           </div>
           <div className="temp">
             <div className="sub-temp">
-              <img src="./public/cloud.png" alt="temp" />
+              <img src="../public/cloud.png" alt="temp" />
               <p>{kelvinToCelsius(weatherData.main.temp).toFixed(2)} °C</p>
             </div>
           </div>
