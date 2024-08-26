@@ -65,7 +65,7 @@ function App() {
       if (error.response) {
         setError("City not found. Please try again.");
       } else {
-        setError("Network error. Please check your internet connection and try again.");
+        setError("Please check your internet connection and try again.");
       }
     } finally {
       setLoading(false);
