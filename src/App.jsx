@@ -14,7 +14,12 @@ function App() {
   const apikey = "b1b89674761bd3c540eb42e4a0e9b09c"; // OpenWeatherMap API
 
   useEffect(() => {
-    const handleOnlineStatus = () => setIsOnline(navigator.onLine);
+    const handleOnlineStatus = () => {
+      setIsOnline(navigator.onLine);
+      if (!navigator.onLine) {
+        setError("Please connect to the internet and try again.");
+      }
+    };
 
     window.addEventListener("online", handleOnlineStatus);
     window.addEventListener("offline", handleOnlineStatus);
@@ -32,7 +37,7 @@ function App() {
   }, []);
 
   const fetchWeatherData = async () => {
-    if (!isOnline) {
+    if (!navigator.onLine) {
       setError("Please connect to the internet and try again.");
       return;
     }
@@ -56,7 +61,11 @@ function App() {
       const forecastResponse = await axios.get(forecastUrl);
       setForecastData(forecastResponse.data);
     } catch (error) {
-      setError("City not found. Please try again.");
+      if (error.response) {
+        setError("City not found. Please try again.");
+      } else {
+        setError("Network error. Please check your internet connection and try again.");
+      }
     } finally {
       setLoading(false);
     }
@@ -205,7 +214,7 @@ function App() {
           </div>
           <div className="temp">
             <div className="sub-temp">
-              <img src="./cloud.png" alt="temp" />
+              <img src="./public/cloud.png" alt="temp" />
               <p>{kelvinToCelsius(weatherData.main.temp).toFixed(2)} °C</p>
             </div>
           </div>
@@ -229,7 +238,6 @@ function App() {
           </div>
         </div>
       )}
-
     </div>
   );
 }
