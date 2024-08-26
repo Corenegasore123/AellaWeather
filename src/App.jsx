@@ -115,11 +115,11 @@ function App() {
     if (!forecastData) return [];
   
     const dailyForecast = {};
-    const today = new Date().toLocaleDateString(); // Get today's date
+    const today = new Date().toLocaleDateString(); 
   
     forecastData.list.forEach((entry) => {
       const date = new Date(entry.dt * 1000).toLocaleDateString();
-      if (date === today) return; // Skip today's forecast
+      if (date === today) return;
   
       if (!dailyForecast[date]) {
         dailyForecast[date] = {
@@ -214,7 +214,7 @@ function App() {
           </div>
           <div className="temp">
             <div className="sub-temp">
-              <img src="../public/cloud.png" alt="temp" />
+              <img src="/cloud.png" alt="temp" />
               <p>{kelvinToCelsius(weatherData.main.temp).toFixed(2)} °C</p>
             </div>
           </div>
