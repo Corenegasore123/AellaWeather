@@ -12,9 +12,15 @@ function App() {
   const [error, setError] = useState("");
   const [isOnline, setIsOnline] = useState(navigator.onLine);
   const [loading, setLoading] = useState(false);
+  const [initialLoading, setInitialLoading] = useState(true); // New state for initial load
   const apikey = "b1b89674761bd3c540eb42e4a0e9b09c"; // OpenWeatherMap API
 
   useEffect(() => {
+    // To simulate initial loading or a splash screen before the app renders
+    setTimeout(() => {
+      setInitialLoading(false); // Set initial loading to false after a delay
+    }, 1500); // You can adjust the timeout as needed
+
     const handleOnlineStatus = () => {
       setIsOnline(navigator.onLine);
       if (!navigator.onLine) {
@@ -149,29 +155,42 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className="title">AellaWeather</h1>
-      <form className="center" onSubmit={handleSubmit}>
-        <input
-          className="input"
-          type="text"
-          name="city"
-          placeholder={weatherData ? city : "Enter the city..."}
-          value={city}
-          onChange={handleInputChange}
-        />
-        <button className="search-button" type="submit">
-          Search
-        </button>
-      </form>
-
-      {loading && (
-        <div className="loading-container">
+      {/* Initial loading spinner */}
+      {initialLoading && (
+        <div className="initial-loading-container">
           <FaSpinner className="spinner" />
-          <p className="loading-message">Loading...</p>
+          <p className="loading-text">Loading AellaWeather...</p>
         </div>
       )}
-      {!loading && error && <p className="error">{error}</p>}
-      {weatherData && (
+
+      {/* Main content of the app after initial loading */}
+      {!initialLoading && (
+        <>
+          <h1 className="title">AellaWeather</h1>
+          <form className="center" onSubmit={handleSubmit}>
+            <input
+              className="input"
+              type="text"
+              name="city"
+              placeholder={weatherData ? city : "Enter the city..."}
+              value={city}
+              onChange={handleInputChange}
+            />
+            <button className="search-button" type="submit">
+              Search
+            </button>
+          </form>
+
+          {loading && (
+            <div className="loading-container">
+              <FaSpinner className="spinner" />
+              <p className="loading-message">Loading...</p>
+            </div>
+          )}
+
+          {!loading && error && <p className="error">{error}</p>}
+          
+          {weatherData && (
         <div className="container">
           <div className="left">
             <h2>
@@ -222,22 +241,24 @@ function App() {
         </div>
       )}
 
-      {forecastData && (
-        <div className="forecast-container flex flex-row flex-wrap">
-          <h2>5-Day Forecast</h2>
-          <div className="forecast">
-            {getDailyForecast()
-              .slice(0, 5)
-              .map((forecast) => (
-                <div key={forecast.date} className="forecast-item">
-                  <p>{forecast.date}</p>
-                  <p>Temp: {forecast.temp} °C</p>
-                  <p>Humidity: {forecast.humidity} %</p>
-                  <p>{forecast.weather}</p>
-                </div>
-              ))}
-          </div>
-        </div>
+          {forecastData && (
+            <div className="forecast-container flex flex-row flex-wrap">
+              <h2>5-Day Forecast</h2>
+              <div className="forecast">
+                {getDailyForecast()
+                  .slice(0, 5)
+                  .map((forecast) => (
+                    <div key={forecast.date} className="forecast-item">
+                      <p>{forecast.date}</p>
+                      <p>Temp: {forecast.temp} °C</p>
+                      <p>Humidity: {forecast.humidity} %</p>
+                      <p>{forecast.weather}</p>
+                    </div>
+                  ))}
+              </div>
+            </div>
+          )}
+        </>
       )}
     </div>
   );
