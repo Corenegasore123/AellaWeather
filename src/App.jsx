@@ -242,7 +242,7 @@ function App() {
       )}
 
           {forecastData && (
-            <div className="forecast-container flex flex-row flex-wrap">
+            <div className="forecast-container">
               <h2>5-Day Forecast</h2>
               <div className="forecast">
                 {getDailyForecast()
